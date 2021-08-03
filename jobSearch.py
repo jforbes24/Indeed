@@ -10,10 +10,10 @@ import pandas as pd
 
 baseUrl = 'https://uk.indeed.com'
 
-def get_url(position, location):
+def get_url(position, salary, location):
     # generate url from position and location
-    template = baseUrl + '/jobs?q={}&l={}'
-    url = template.format(position, location)
+    template = baseUrl + '/jobs?q={}£{}&l={}'
+    url = template.format(position, salary, location)
     return url
 
 # Extract job data from a single record
@@ -70,10 +70,10 @@ def get_record(card):
 
     return record
 
-def main(position, location):
+def main(position, salary, location):
     # run main program
     records = []
-    url = get_url(position, location)
+    url = get_url(position, salary, location)
 
     # extract the job data
     while True:
@@ -101,4 +101,4 @@ def main(position, location):
         writer.writerows(records)
 
 # run the main program
-main('senior analyst', 'london')
+main('senior analyst', '50000', 'london')
